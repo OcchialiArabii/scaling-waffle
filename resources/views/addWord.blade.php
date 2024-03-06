@@ -1,4 +1,4 @@
 @extends('layout')
 @section('content')
-<p>Hello word</p>
+<p>Hello World!</p>
 @endsection
