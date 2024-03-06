@@ -1,4 +1,4 @@
 @extends('layout')
 @section('content')
-asdasdasda
+<p>Hello word</p>
 @endsection
