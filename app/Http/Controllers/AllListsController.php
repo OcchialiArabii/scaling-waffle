@@ -9,7 +9,18 @@ use App\Models\AllLists;
 
 class AllListsController extends Controller
 {
-    public function store(Request $request)
+    public function ShowLists()
+    {
+        $lists = AllLists::all();
+        return view('wordLists', ['lists' => $lists]);
+    }
+
+    public function AddList(Request $request)
+    {
+        return redirect()->route('addWord')->with('new-list', $request['name']);
+    }
+
+    public function CreateList(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|string',

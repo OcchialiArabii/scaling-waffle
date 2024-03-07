@@ -15,18 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ListsController::class, 'ShowLists'])->name('wordLists');
+Route::get('/', [AllListsController::class, 'ShowLists'])->name('wordLists');
 
 Route::get('/add-list', function() {
     return view('addList');
 })->name('addList');
 
-Route::post('/add-list', [AllListsController::class, 'store']);
+Route::post('/add-list', [AllListsController::class, 'CreateList']);
 
 Route::get('/add-word', function() {
     return view('addWord');
 })->name('addWord');
-
-Route::get('list/{id}', function ($id) {
-    return response('Lista ' . $id);
-});
