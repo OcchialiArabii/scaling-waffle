@@ -32,9 +32,7 @@ class AllListsController extends Controller
             'description' => 'required|string',
         ]);
 
-        $checkTableName = AllLists::where('name', $validatedData['name'])->value('id');
-
-        if ($checkTableName === NULL) {
+        if (AllLists::where('name', $validatedData['name'])->value('id') === NULL) {
             $model = new AllLists([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
@@ -51,11 +49,11 @@ class AllListsController extends Controller
                 $table->string('pl');
             });
 
-            $status = 'List created correctly';
+            $statusCreate = 'List created correctly';
         } else {
-            $status = 'Error adding list - list name already taken';
+            $statusCreate = 'Error adding list - list name already taken';
         }
 
-        return redirect()->route('lists.showLists');
+        return redirect()->route('lists.showLists',['statusCreate' => $statusCreate]);
     }
 }

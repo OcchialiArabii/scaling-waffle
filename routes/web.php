@@ -28,3 +28,7 @@ Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists
 
 // '/list_{id}/add-word' -> wyświetla formularz dodawania słów do określonej listy
 Route::get('/list_{id}/add-word', [AllListsController::class, 'addWord'])->name('lists.addWord');
+
+Route::get('/test', function() {
+    return redirect('/')->with('statusCreate', 'OK');
+});

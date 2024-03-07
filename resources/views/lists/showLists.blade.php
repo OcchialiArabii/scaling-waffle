@@ -3,6 +3,9 @@
 <form action="/add-list" method="GET">
   <button>Add list</button>
 </form>
+@if(isset($_GET['statusCreate']))
+    <p>{{ $_GET['statusCreate'] }}</p>
+@endif
 @if(count($lists) > 0)
 <span>Count: {{count($lists)}} </span>
 <table border='1'>
