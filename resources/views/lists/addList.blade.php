@@ -1,7 +1,7 @@
 @extends('layout')
 @section('content')
 
-<form action="{{ route('addList') }}" method="POST">
+<form action="{{ route('lists.createList') }}" method="POST">
   @csrf
   <label for="name">Table name:</label>
   <input type="text" name="name" required>

@@ -15,14 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [AllListsController::class, 'ShowLists'])->name('wordLists');
+// '/' -> wyświetla wszystkie listy z '__lists'
+Route::get('/', [AllListsController::class, 'showLists'])->name('lists.showLists');
 
+// '/add-list' -> wyświetla formularz dodawania list do bazy
 Route::get('/add-list', function() {
-    return view('addList');
-})->name('addList');
+    return view('lists.addList');
+})->name('lists.addList');
 
-Route::post('/add-list', [AllListsController::class, 'CreateList']);
+// -> przetwarza formularz, tworzy tabele i dodaje dane do tabeli '__lists' -> przekierowuje na widok wszystkich list
+Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists.createList');
 
-Route::get('/add-word', function() {
-    return view('addWord');
-})->name('addWord');
+// '/list_{id}/add-word' -> wyświetla formularz dodawania słów do określonej listy
+Route::get('/list_{id}/add-word', [AllListsController::class, 'addWord'])->name('lists.addWord');

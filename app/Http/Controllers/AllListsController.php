@@ -9,40 +9,53 @@ use App\Models\AllLists;
 
 class AllListsController extends Controller
 {
-    public function ShowLists()
+    private $lists;
+
+    // Przypisuje tablice wszytkich rekordów z tabeli '__lists' zmiennej $lists
+    public function __construct()
     {
-        $lists = AllLists::all();
-        return view('wordLists', ['lists' => $lists]);
+        $this->lists = AllLists::all();
     }
 
-    public function AddList(Request $request)
+    // Zwraca widok 'wordLists' z tablicą wszytkich rekordów z tabeli '__lists'
+    public function showLists()
     {
-        return redirect()->route('addWord')->with('new-list', $request['name']);
+        return view('lists.showLists', ['lists' => $this->lists]);
     }
 
-    public function CreateList(Request $request)
+    // Pobiera dane z formularza 'addList', waliduje, dodaje rekord do tabeli '__lists'
+    // Tworzy nową tabele i przekierowywuje do 'wordLists'
+    public function createList(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
         ]);
 
-        $model = new AllLists([
-            'name' => $validatedData['name'],
-            'description' => $validatedData['description'],
-            'user_id' => 1,
-            'private' => 0
-        ]);
-        $model->save();
+        $checkTableName = AllLists::where('name', $validatedData['name'])->value('id');
 
-        $tableName ='list_' . AllLists::where('name', $validatedData['name'])->value('id');
+        if ($checkTableName === NULL) {
+            $model = new AllLists([
+                'name' => $validatedData['name'],
+                'description' => $validatedData['description'],
+                'user_id' => 1,
+                'private' => 0
+            ]);
+            $model->save();
 
-        Schema::create($tableName, function (Blueprint $table) {
-            $table->id();
-            $table->string('eng')->unique();
-            $table->string('pl');
-        });
+            $tableName = 'list_' . AllLists::where('name', $validatedData['name'])->value('id');
 
-        return redirect()->route('wordLists');
+            Schema::create($tableName, function (Blueprint $table) {
+                $table->id();
+                $table->string('eng')->unique();
+                $table->string('pl');
+            });
+
+            $status = 'List created correctly';
+        } else {
+            $status = 'Error adding list - list name already taken';
+        }
+
+        return redirect()->route('lists.showLists');
     }
 }
