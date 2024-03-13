@@ -19,16 +19,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [AllListsController::class, 'showLists'])->name('lists.showLists');
 
 // '/add-list' -> wyświetla formularz dodawania list do bazy
-Route::get('/add-list', function() {
+Route::get('/add-list', function () {
     return view('lists.addList');
 })->name('lists.addList');
 
 // -> przetwarza formularz, tworzy tabele i dodaje dane do tabeli '__lists' -> przekierowuje na widok wszystkich list
 Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists.createList');
 
-// '/list_{id}/add-word' -> wyświetla formularz dodawania słów do określonej listy
-Route::get('/list_{id}/add-word', [AllListsController::class, 'addWord'])->name('lists.addWord');
+Route::get('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
 
-Route::get('/test', function() {
-    return redirect('/')->with('statusCreate', 'OK');
-});

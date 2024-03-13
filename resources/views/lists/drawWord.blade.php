@@ -1,5 +1,5 @@
 @extends('layout')
 @section('content')
-<p>ADD WORD</p>
+<p>DRAW WORD</p>
 {{$id}}
 @endsection

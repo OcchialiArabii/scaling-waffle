@@ -17,6 +17,8 @@ return new class extends Migration
             $table->text('description');
             $table->integer('user_id');
             $table->boolean('private');
+            $table->string('lang1');
+            $table->string('lang2');
             $table->timestamps();
         });
     }

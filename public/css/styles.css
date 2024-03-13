@@ -1,0 +1,20 @@
+table {
+  border-collapse: collapse;
+}
+
+.optionBtn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  margin: 3px;
+}
+
+.optionBtn > img {
+  width: 20px;
+  height: 20px;
+}
+
+td:nth-child(3) {
+  display: flex;
+}

@@ -5,22 +5,24 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use App\Models\AllLists;
 
 class AllListsController extends Controller
 {
-    private $lists;
-
-    // Przypisuje tablice wszytkich rekordów z tabeli '__lists' zmiennej $lists
-    public function __construct()
+    private function arrayChange($arr)
     {
-        $this->lists = AllLists::all();
+        $newArr = [];
+        foreach ($arr as $row) {
+            $newArr[] = json_decode(json_encode($row), true);
+        }
+        return $newArr;
     }
 
     // Zwraca widok 'wordLists' z tablicą wszytkich rekordów z tabeli '__lists'
     public function showLists()
     {
-        return view('lists.showLists', ['lists' => $this->lists]);
+        return view('lists.showLists', ['lists' => AllLists::all()]);
     }
 
     // Pobiera dane z formularza 'addList', waliduje, dodaje rekord do tabeli '__lists'
@@ -30,6 +32,9 @@ class AllListsController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string',
             'description' => 'required|string',
+            'private' => 'required|string',
+            'lang1' => 'required|string',
+            'lang2' => 'required|string'
         ]);
 
         if (AllLists::where('name', $validatedData['name'])->value('id') === NULL) {
@@ -37,7 +42,9 @@ class AllListsController extends Controller
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
                 'user_id' => 1,
-                'private' => 0
+                'private' => $validatedData['private'],
+                'lang1' => $validatedData['lang1'],
+                'lang2' => $validatedData['lang2']
             ]);
             $model->save();
 
@@ -54,6 +61,21 @@ class AllListsController extends Controller
             $statusCreate = 'Error adding list - list name already taken';
         }
 
-        return redirect()->route('lists.showLists',['statusCreate' => $statusCreate]);
+        return redirect()->route('lists.showLists', ['statusCreate' => $statusCreate]);
+    }
+
+    public function listsOptions($action)
+    {
+        $id = $_GET['id'];
+        $listDetails = AllLists::find($id);
+        switch ($action) {
+            case 'draw-word':
+                return view('lists.drawWord', ['id' => $id]);
+            case 'add-word':
+                return view('lists.addWord', ['id' => $id]);
+            case 'edit-list':
+                $listContetnt = $this->arrayChange(DB::table('list_' . $id)->get()->toArray());
+                return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContetnt]);
+        }
     }
 }

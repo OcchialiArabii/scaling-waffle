@@ -13,6 +13,8 @@ class AllLists extends Model
         'name',
         'description',
         'user_id',
-        'private'
+        'private',
+        'lang1',
+        'lang2'
     ];
 }

@@ -18,22 +18,26 @@
   <tr id="list_{{$list['id']}}">
     <td>{{$list['name']}}</td>
     <td>{{$list['description']}}</td>
-    <td><!--
-      <form action='./index.php' method='GET'>
-        <button class='optionBtn' title='Losuj słówko' name='drawWord' value='{{$list['id']}}'>
-          <img src='./img/btn_draw.png' alt="Draw">
-        </button>
-        <button class='optionBtn' title='Dodaj słówko' name='addWord' value='{{$list['id']}}'>
-          <img src='./img/btn_add.png' alt="Add">
-        </button>
-        <button class='optionBtn' title='Edytuj liste słówek' name='editList' value='{{$list['id']}}'>
-          <img src='./img/btn_modify.png' alt="Edit">
+    <td>
+      <form action='{{ route('lists.listsOptions', ['action' => 'draw-word']) }}' method='GET'>
+        <button class='optionBtn' title='Draw word' name='id' value='{{$list['id']}}'>
+          <img src='{{ asset('img/btn_draw.png') }}' alt="Draw">
         </button>
       </form>
-      <button class='optionBtn deleteBtn' title='Usuń liste' name='deleteList' value='{{$list['id']}}'>
-        <img src='./img/btn_delete.png' alt="Delete">
+      <form action='{{ route('lists.listsOptions', ['action' => 'add-word']) }}' method='GET'>
+        <button class='optionBtn' title='Add word' name='id' value='{{$list['id']}}'>
+          <img src='{{ asset('img/btn_add.png') }}' alt="Add">
+        </button>
+      </form>
+      <form action='{{ route('lists.listsOptions', ['action' => 'edit-list']) }}' method='GET'>
+        <button class='optionBtn' title='Edit word list' name='id' value='{{$list['id']}}'>
+          <img src='{{ asset('img/btn_modify.png') }}' alt="Edit">
+        </button>
+      </form>
+      <button class='optionBtn deleteBtn' title='Delete word list' name='deleteList' value='{{$list['id']}}'>
+        <img src='{{ asset('img/btn_delete.png') }}' alt="Delete">
       </button>
-    </td> -->
+    </td>
   </tr>
   @endforeach
 </table>
