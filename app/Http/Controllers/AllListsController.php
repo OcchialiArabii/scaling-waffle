@@ -52,8 +52,8 @@ class AllListsController extends Controller
 
             Schema::create($tableName, function (Blueprint $table) {
                 $table->id();
-                $table->string('eng')->unique();
-                $table->string('pl');
+                $table->string('lang1')->unique();
+                $table->string('lang2')->unique();
             });
 
             $statusCreate = 'List created correctly';
@@ -74,8 +74,8 @@ class AllListsController extends Controller
             case 'add-word':
                 return view('lists.addWord', ['id' => $id]);
             case 'edit-list':
-                $listContetnt = $this->arrayChange(DB::table('list_' . $id)->get()->toArray());
-                return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContetnt]);
+                $listContent = $this->arrayChange(DB::table('list_' . $id)->orderBy('lang1')->get()->toArray());
+                return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContent]);
         }
     }
 }
