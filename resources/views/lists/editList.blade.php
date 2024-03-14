@@ -23,7 +23,14 @@
     <tr>
       <td>{{ $row['lang1'] }}</td>
       <td>{{ $row['lang2'] }}</td>
-      <td>Edit - Delete</td>
+      <td>
+        <button class='optionBtn' title='Edit word' name='editWord' value='{{ $row['id'] }}'>
+          <img src='{{ asset('img/btn_modify.png') }}' alt="Edit">
+        </button>
+        <button class='optionBtn' title='Delete word' name='deleteWord' value='{{ $row['id'] }}'>
+          <img src='{{ asset('img/btn_delete.png') }}' alt="Delete">
+        </button>
+    </td>
     </tr>
     @endforeach
   </table>

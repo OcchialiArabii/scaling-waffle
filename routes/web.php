@@ -28,3 +28,4 @@ Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists
 
 Route::get('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
 
+Route::post('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');

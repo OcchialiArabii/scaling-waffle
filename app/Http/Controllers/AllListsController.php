@@ -58,7 +58,7 @@ class AllListsController extends Controller
 
             $statusCreate = 'List created correctly';
         } else {
-            $statusCreate = 'Error adding list - list name already taken';
+            $statusCreate = 'Error adding list - invalid list name';
         }
 
         return redirect()->route('lists.showLists', ['statusCreate' => $statusCreate]);
@@ -72,10 +72,24 @@ class AllListsController extends Controller
             case 'draw-word':
                 return view('lists.drawWord', ['id' => $id]);
             case 'add-word':
-                return view('lists.addWord', ['id' => $id]);
+                return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails]);
             case 'edit-list':
                 $listContent = $this->arrayChange(DB::table('list_' . $id)->orderBy('lang1')->get()->toArray());
                 return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContent]);
+        }
+    }
+
+    public function addWord()
+    {
+        $id = $_POST['id'];
+        $lang1 = $_POST['lang1'];
+        $lang2 = $_POST['lang2'];
+        $listContent = DB::table('list_' . $id)->where('lang1', $lang1)->orWhere('lang2', $lang2)->first();
+        if ($listContent) {
+            $l = (array) $listContent;
+            print_r($l);
+        } else {
+            echo "mozna dodac";
         }
     }
 }
