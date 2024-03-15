@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <form action="/add-list" method="GET">
   <button>Add list</button>

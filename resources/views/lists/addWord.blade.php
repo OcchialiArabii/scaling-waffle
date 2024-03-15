@@ -7,4 +7,7 @@
   <label>{{ $listDetails['lang2'] }}: <input type="text" name="lang2" required></label>
   <button type="submit" name='id' value='{{ $id }}'>Add word</button>
 </form>
+@if (isset( $status ))
+<p>{{ $status }}</p>
+@endif
 @endsection
