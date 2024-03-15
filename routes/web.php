@@ -15,21 +15,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ListsController::class, 'ShowLists'])->name('wordLists');
+// '/' -> wyświetla wszystkie listy z '__lists'
+Route::get('/', [AllListsController::class, 'showLists'])->name('lists.showLists');
 
-Route::get('/add-list', function() {
-    return view('addList');
-})->name('addList');
+// '/add-list' -> wyświetla formularz dodawania list do bazy
+Route::get('/add-list', function () {
+    return view('lists.addList');
+})->name('lists.addList');
 
-Route::post('/add-list', [AllListsController::class, 'store']);
+// -> przetwarza formularz, tworzy tabele i dodaje dane do tabeli '__lists' -> przekierowuje na widok wszystkich list
+Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists.createList');
 
-Route::get('/add-word', function() {
-    return view('addWord');
-})->name('addWord');
+Route::get('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
 
-Route::get('list/{id}', function ($id) {
-    return response('Lista ' . $id);
-});
+Route::post('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');
+
 Route::get('/main', function (){
     return view('main');
 });
