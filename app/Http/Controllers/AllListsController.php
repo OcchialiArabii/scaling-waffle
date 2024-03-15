@@ -19,14 +19,11 @@ class AllListsController extends Controller
         return $newArr;
     }
 
-    // Zwraca widok 'wordLists' z tablicą wszytkich rekordów z tabeli '__lists'
     public function showLists()
     {
         return view('lists.showLists', ['lists' => AllLists::all()]);
     }
 
-    // Pobiera dane z formularza 'addList', waliduje, dodaje rekord do tabeli '__lists'
-    // Tworzy nową tabele i przekierowywuje do 'wordLists'
     public function createList(Request $request)
     {
         $validatedData = $request->validate([
@@ -82,14 +79,16 @@ class AllListsController extends Controller
     public function addWord()
     {
         $id = $_POST['id'];
+        $listDetails = AllLists::find($id);
         $lang1 = $_POST['lang1'];
         $lang2 = $_POST['lang2'];
         $listContent = DB::table('list_' . $id)->where('lang1', $lang1)->orWhere('lang2', $lang2)->first();
         if ($listContent) {
-            $l = (array) $listContent;
-            print_r($l);
+            $status = 'słowo jest już w tabeli';
+            return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
         } else {
-            echo "mozna dodac";
+            $status = "mozna dodac";
+            return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
         }
     }
 }
