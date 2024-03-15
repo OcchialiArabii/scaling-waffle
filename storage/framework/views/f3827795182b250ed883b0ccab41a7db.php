@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <p>ADD WORD <?php echo e($id); ?></p>
 <form action="<?php echo e(route('lists.addWord', ['action' => 'add-word'])); ?>" method="POST">
@@ -7,7 +6,7 @@
   <label><?php echo e($listDetails['lang2']); ?>: <input type="text" name="lang2" required></label>
   <button type="submit" name='id' value='<?php echo e($id); ?>'>Add word</button>
 </form>
-<?php if(isset($status)): ?>
+<?php if(isset( $status )): ?>
 <p><?php echo e($status); ?></p>
 <?php endif; ?>
 <?php $__env->stopSection(); ?>
