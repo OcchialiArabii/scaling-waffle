@@ -2554,3 +2554,33 @@
 #64 C:\\Users\\PC\\Documents\\Web\\laravel-project\\english-vocabulary\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\resources\\server.php(16): require_once('C:\\\\Users\\\\PC\\\\Doc...')
 #65 {main}
 "} 
+[2024-03-15 22:33:24] local.ERROR: There are no commands defined in the "migrate:" namespace.
+
+Did you mean this?
+    migrate {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"migrate:\" namespace.
+
+Did you mean this?
+    migrate at C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php:669)
+[stacktrace]
+#0 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php(720): Symfony\\Component\\Console\\Application->findNamespace('migrate:')
+#1 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php(266): Symfony\\Component\\Console\\Application->find('migrate::fresj')
+#2 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
+[2024-03-15 22:33:26] local.ERROR: There are no commands defined in the "migrate:" namespace.
+
+Did you mean this?
+    migrate {"exception":"[object] (Symfony\\Component\\Console\\Exception\\NamespaceNotFoundException(code: 0): There are no commands defined in the \"migrate:\" namespace.
+
+Did you mean this?
+    migrate at C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php:669)
+[stacktrace]
+#0 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php(720): Symfony\\Component\\Console\\Application->findNamespace('migrate:')
+#1 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php(266): Symfony\\Component\\Console\\Application->find('migrate::fresh')
+#2 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\symfony\\console\\Application.php(175): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(201): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 C:\\Users\\OcchialiArabii\\Desktop\\Abibi\\artisan(35): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 {main}
+"} 
