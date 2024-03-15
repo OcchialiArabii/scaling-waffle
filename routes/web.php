@@ -30,16 +30,16 @@ Route::get('/list/{action}', [AllListsController::class, 'listsOptions'])->name(
 
 Route::post('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');
 
-Route::get('/main', function (){
+Route::get('/main', function () {
     return view('main');
 });
-Route::get('/register',function (){
+Route::get('/register', function () {
     return view('register');
 });
-Route::post('/register',[AuthController::class , 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login',function () {
-    return view('login',$_GET);
+Route::get('/login', function () {
+    return view('login', $_GET);
 })->name('login');
 
-Route::post('/login',[AuthController::class , 'login']);
+Route::post('/login', [AuthController::class, 'login']);
