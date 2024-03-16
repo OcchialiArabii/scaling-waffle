@@ -93,11 +93,9 @@ class AllListsController extends Controller
             } else {
                 $status = 'Word <b>' . $lang1 . '</b> addition error';
             }
-            return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
         } else {
-            $l = (array) $listContent;
             $status = 'Word <b>' . $lang1 . '</b> is already on the list';
-            return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
         }
+        return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
     }
 }
