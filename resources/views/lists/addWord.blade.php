@@ -8,6 +8,6 @@
   <button type="submit" name='id' value='{{ $id }}'>Add word</button>
 </form>
 @if (isset( $status ))
-<p>{{ $status }}</p>
+<p>{!! $status !!}</p>
 @endif
 @endsection

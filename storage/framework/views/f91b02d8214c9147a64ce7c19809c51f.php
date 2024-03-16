@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <p>EDIT LIST <?php echo e($id); ?></p>
 <section>
@@ -9,6 +8,9 @@
     <label>Yes<input type="radio" name="private" <?php echo e(($listDetails['private'] == 1) ? 'checked' : ''); ?>></label>
     <label>No<input type="radio" name="private" <?php echo e(($listDetails['private'] == 0) ? 'checked' : ''); ?>></label>
   </p>
+  <form action='<?php echo e(route('lists.listsOptions', ['action' => 'add-word'])); ?>' method='GET'>
+    <button name='id' value='<?php echo e($id); ?>'>Add word</button>
+  </form>
 </section>
 <main>
   <?php if(count($listContent) > 0): ?>

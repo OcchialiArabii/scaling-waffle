@@ -82,14 +82,20 @@ class AllListsController extends Controller
     public function addWord()
     {
         $id = $_POST['id'];
+        $listDetails = AllLists::find($id);
         $lang1 = $_POST['lang1'];
         $lang2 = $_POST['lang2'];
         $listContent = DB::table('list_' . $id)->where('lang1', $lang1)->orWhere('lang2', $lang2)->first();
-        if ($listContent) {
-            $l = (array) $listContent;
-            print_r($l);
+        if (!$listContent) {
+            $insert = DB::table('list_' . $id)->insert(['lang1' => $lang1, 'lang2' => $lang2]);
+            if ($insert) {
+                $status = 'Word <b>' . $lang1 . '</b> added correctly';
+            } else {
+                $status = 'Word <b>' . $lang1 . '</b> addition error';
+            }
         } else {
-            echo "mozna dodac";
+            $status = 'Word <b>' . $lang1 . '</b> is already on the list';
         }
+        return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
     }
 }

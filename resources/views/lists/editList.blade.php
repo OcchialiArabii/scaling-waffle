@@ -9,6 +9,9 @@
     <label>Yes<input type="radio" name="private" {{ ($listDetails['private'] == 1) ? 'checked' : '' }}></label>
     <label>No<input type="radio" name="private" {{ ($listDetails['private'] == 0) ? 'checked' : '' }}></label>
   </p>
+  <form action='{{ route('lists.listsOptions', ['action' => 'add-word']) }}' method='GET'>
+    <button name='id' value='{{$id}}'>Add word</button>
+  </form>
 </section>
 <main>
   @if (count($listContent) > 0)
