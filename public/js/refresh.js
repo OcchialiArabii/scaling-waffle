@@ -20,7 +20,7 @@ function getCookie(cname) {
     
     $(document).keydown(function(event) {
       if (event.which == 116) {
-        location.href='/login'
+        location.href='/'
       }
     });
     

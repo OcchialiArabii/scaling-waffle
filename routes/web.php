@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // '/' -> wyświetla wszystkie listy z '__lists'
-Route::get('/', [AllListsController::class, 'showLists'])->name('lists.showLists');
+Route::get('/lists', [AllListsController::class, 'showLists'])->name('lists.showLists');
 
 // '/add-list' -> wyświetla formularz dodawania list do bazy
 Route::get('/add-list', function () {
@@ -30,16 +30,17 @@ Route::get('/list/{action}', [AllListsController::class, 'listsOptions'])->name(
 
 Route::post('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');
 
-Route::get('/main', function () {
-    return view('main');
-});
 Route::get('/register', function () {
-    return view('register');
+    return view('auth.register');
 });
 Route::post('/register', [AuthController::class, 'register']);
 
-Route::get('/login', function () {
-    return view('login', $_GET);
+Route::get('/', function () {
+    return view('auth.login', $_GET);
 })->name('login');
 
-Route::post('/login', [AuthController::class, 'login']);
+Route::post('/', [AuthController::class, 'login']);
+
+Route::get('/home', function () {
+    return view('home');
+})->name('home');

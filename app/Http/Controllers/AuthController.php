@@ -31,8 +31,9 @@ class AuthController extends Controller
         {
             if(($value['UserName']==$_POST['login'])&&Hash::check($_POST['passwd'],$value['Hpasswd'])) 
             {
-                $_SESSION['id']=$value['id'];
-                return view('succes',$_SESSION);
+                session(['name'=> $value['UserName']]);
+                session(['id'=> $value['id']]);
+                return redirect()->route('home');
             }
             
         }

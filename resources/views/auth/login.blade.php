@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js" defer></script>
-    <script src="{{ asset('refresh.js')}}" defer></script>
+    <script src="{{ asset('js/refresh.js')}}" defer></script>
     <title>Login</title>
 </head>
 <body>
@@ -24,13 +24,12 @@
     @endswitch
     @endisset
 
-    <form action="/login" method="POST">
+    <form action="/" method="POST">
         @csrf
         <input type="text" name="login" id='login' placeholder="Login...">
         <input type='password' name='passwd' id='passwd' placeholder='Password...'>
         <input type='submit' value='Sign in' class ="submit">
-    <form>
-    
-    
+    </form>
+    <a href="/register"><button>Register</button></a>
 </body>
 </html>
