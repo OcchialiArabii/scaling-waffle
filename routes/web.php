@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // '/' -> wyświetla wszystkie listy z '__lists'
-Route::get('/', [AllListsController::class, 'showLists'])->name('lists.showLists');
+Route::get('/lists', [AllListsController::class, 'showLists'])->name('lists.showLists');
 
 // '/add-list' -> wyświetla formularz dodawania list do bazy
 Route::get('/add-list', function () {

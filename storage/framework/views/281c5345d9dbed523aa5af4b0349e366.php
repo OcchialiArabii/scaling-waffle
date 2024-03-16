@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 <p>DRAW WORD</p>
 <?php echo e($id); ?>

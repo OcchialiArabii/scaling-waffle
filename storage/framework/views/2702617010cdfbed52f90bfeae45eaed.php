@@ -1,4 +1,3 @@
-
 <?php $__env->startSection('content'); ?>
 
 <form action="<?php echo e(route('lists.createList')); ?>" method="POST">
