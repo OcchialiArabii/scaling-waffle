@@ -11,7 +11,7 @@
 </head>
 
 <body>
-  <a href="/lists">Home Page</a>
+  <a href="/home">Home Page</a>
   <h6>UP -- UP -- UP -- UP -- UP</h6>
   <?php echo $__env->yieldContent('content'); ?>
   <h6>DOWN -- DOWN -- DOWN -- DOWN</h6>
