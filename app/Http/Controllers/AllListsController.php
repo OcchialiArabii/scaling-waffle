@@ -76,6 +76,10 @@ class AllListsController extends Controller
             case 'edit-list':
                 $listContent = $this->arrayChange(DB::table('list_' . $id)->orderBy('lang1')->get()->toArray());
                 return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContent]);
+            case 'remove-list':
+                $delete = DB::delete('delete from __lists where id = '.$id);
+                $drop = DB::statement('drop table list_'.$id);
+                return redirect()->route('lists.showLists');
         }
     }
 

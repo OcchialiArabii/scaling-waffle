@@ -34,9 +34,11 @@
           <img src='{{ asset('img/btn_modify.png') }}' alt="Edit">
         </button>
       </form>
-      <button class='optionBtn deleteBtn' title='Delete word list' name='deleteList' value='{{$list['id']}}'>
+      <form action='{{ route('lists.listsOptions',['action'=> 'remove-list'])}}' method='GET'>
+      <button class='optionBtn deleteBtn' title='Delete word list' name='id' value='{{$list['id']}}'>
         <img src='{{ asset('img/btn_delete.png') }}' alt="Delete">
       </button>
+      </form>
     </td>
   </tr>
   @endforeach

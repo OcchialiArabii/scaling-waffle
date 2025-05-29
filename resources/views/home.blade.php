@@ -1,7 +1,8 @@
 @extends("layout")
 @section("content")
 
-<h1>Hello {{ session('name') }}</h1>
-<a href='/lists'><button >Add</button></a>
+<h1 id=welcome>Hello {{ session('name') }}</h1>
+<a  href='/lists'><button id=lists >Lists</button></a>
+
 
 @endsection

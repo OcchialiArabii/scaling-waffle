@@ -1,3 +1,13 @@
+
+#welcome{
+    background-color: black;
+    color:white;
+    font-size: 52px;
+    text-align: center;
+    padding: 50px 50px 50px 50px;
+    width: max-content;
+    
+}
 table {
     border-collapse: collapse;
 }
@@ -17,4 +27,17 @@ table {
 
 td:nth-child(3) {
     display: flex;
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+#home{
+    font-size: 24px;
+    font-weight: bold;
+}
+#lists{
+    font-size: 20px;
+    font-weight: bold;
+    background-color: white;
 }
