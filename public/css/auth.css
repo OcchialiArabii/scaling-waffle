@@ -1,0 +1,12 @@
+*{
+    background-color: black;
+    color: white;
+    font-size: 42px;
+}
+h1{
+    font-size: 72px;
+}
+button , input{
+    background-color: white;
+    color: black;
+}

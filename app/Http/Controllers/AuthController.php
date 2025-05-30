@@ -10,7 +10,11 @@ class AuthController extends Controller
 {
     protected function register()
     {
-
+       
+        foreach (Auth::all() as $data) {
+            if($data['Email']==$_POST['email']){
+               return redirect()->route('login',['message'=>'Email is already taken.']);   
+            }}
 
         $model = new Auth ([
         'Email' => $_POST['email'],
@@ -18,11 +22,12 @@ class AuthController extends Controller
         // Login == Username
         'Hpasswd' => Hash::make($_POST['passwd']),   
         ]);
+  
         
-        $model->save();
-        return redirect()->route('login',['message'=>1]);
-
-    }
+            $model->save();
+            return redirect()->route('login',['message'=>'Sucesssful registration. You can login now.']);  
+    
+        }
 
     protected function login()
     {
@@ -37,7 +42,13 @@ class AuthController extends Controller
             }
             
         }
-        return redirect()->route('login',['message'=>2]);
+        return redirect()->route('login',['message'=>"Invalid username or password"]);
+    }
+
+    protected function logout()
+    {
+        session_abort();
+        return redirect()->route('login');
     }
 
 }
