@@ -11,13 +11,10 @@
 </head>
 
 <body>
-  <h6>UP -- UP -- UP -- UP -- UP</h6>
+  <a id=home href="/home">Home Page</a>
   @yield('content')
   <br><br>
-  <a id=home href="/home">Home Page</a>
-  <br><br>
-  <a href="/logout">Logout</a>
-  <h6>DOWN -- DOWN -- DOWN -- DOWN</h6>
+  
   
 </body>
 

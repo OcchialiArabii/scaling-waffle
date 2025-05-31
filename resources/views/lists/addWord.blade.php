@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
-<p>ADD WORD {{$id}}</p>
+<p>ADD WORD TO THE LIST NO.{{$id}}</p>
 <form action="{{ route('lists.addWord', ['action' => 'add-word']) }}" method="POST">
   @csrf
   <label>{{ $listDetails['lang1'] }}: <input type="text" name="lang1" required autofocus></label>
@@ -10,4 +10,5 @@
 @if (isset( $status ))
 <p>{!! $status !!}</p>
 @endif
+<a  href='/lists'><button >Go back to the lists</button></a>
 @endsection

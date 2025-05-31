@@ -1,12 +1,19 @@
-
+body{
+    background-color: black;
+    color: white;
+    margin-left: 10%;
+}
 #welcome{
     background-color: black;
     color:white;
     font-size: 52px;
     text-align: center;
-    padding: 50px 50px 50px 50px;
     width: max-content;
     
+}
+input{
+    background-color: white;
+    color: black;
 }
 table {
     border-collapse: collapse;
@@ -30,14 +37,16 @@ td:nth-child(3) {
 }
 a{
     text-decoration: none;
-    color: black;
+    color: white;
 }
 #home{
-    font-size: 24px;
+    font-size: 52px;
     font-weight: bold;
+    margin-left: 40%;
 }
-#lists{
+button{
     font-size: 20px;
     font-weight: bold;
     background-color: white;
+    color: black;
 }

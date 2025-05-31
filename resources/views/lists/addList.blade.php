@@ -30,4 +30,5 @@
 
   <button type="submit">Add table</button>
 </form>
+<a  href='/lists'><button >Go back to the lists</button></a>
 @endsection

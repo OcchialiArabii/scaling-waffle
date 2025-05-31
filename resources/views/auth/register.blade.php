@@ -15,5 +15,8 @@
         <input name='email' id='email' type='email' placeholder='E-mail...'>
         <input type="submit" value="Confirm" class="submit">
     </form>
+    <br>
+    <a href="/"><button>Login</button></a>
+    
 </body>
 </html>

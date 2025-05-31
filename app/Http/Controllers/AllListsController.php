@@ -41,7 +41,7 @@ class AllListsController extends Controller
             $model = new AllLists([
                 'name' => $validatedData['name'],
                 'description' => $validatedData['description'],
-                'user_id' => 1,
+                'user_id' => session()->get('id'),
                 'private' => $validatedData['private'],
                 'lang1' => $validatedData['lang1'],
                 'lang2' => $validatedData['lang2']
@@ -70,7 +70,8 @@ class AllListsController extends Controller
         $listDetails = AllLists::find($id);
         switch ($action) {
             case 'draw-word':
-                return view('lists.drawWord', ['id' => $id]);
+                $random=DB::table('list_'.$id)->inRandomOrder()->first();
+                return view('lists.drawWord', ['word1' => $random->lang1,'word2'=>$random->lang2,'id'=>$id,'lists'=>AllLists::all()]);
             case 'add-word':
                 return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails]);
             case 'edit-list':

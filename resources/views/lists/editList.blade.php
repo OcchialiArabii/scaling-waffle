@@ -41,4 +41,5 @@
   <p>No existing words in list.</p>
   @endif
 </main>
+<a  href='/lists'><button >Go back to the lists</button></a>
 @endsection 
