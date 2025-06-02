@@ -66,7 +66,7 @@ class AllListsController extends Controller
 
     public function listsOptions($action)
     {
-        $id = $_GET['id'];
+        $id = $_POST['id'];
         $listDetails = AllLists::find($id);
         switch ($action) {
             case 'draw-word':
@@ -102,5 +102,10 @@ class AllListsController extends Controller
             $status = 'Word <b>' . $lang1 . '</b> is already on the list';
         }
         return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
+    }
+    public function flip()
+    {
+        $id = $_POST['id'];
+        return view('lists.drawWord', ['word1' => $_POST['word1'],'word2'=>$_POST['word2'],'id'=>$id,'lists'=>AllLists::all(),'flip'=>$_POST['flip']]);
     }
 }

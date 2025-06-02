@@ -26,9 +26,9 @@ Route::get('/add-list', function () {
 // -> przetwarza formularz, tworzy tabele i dodaje dane do tabeli '__lists' -> przekierowuje na widok wszystkich list
 Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists.createList');
 
-Route::get('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
+Route::post('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
 
-Route::post('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');
+Route::post('/list/addWord', [AllListsController::class, 'addWord'])->name('lists.addWord');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -47,4 +47,4 @@ Route::get('/home', function () {
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 
-
+Route::post('/flip',[AllListsController::class,'flip'])->name('flip');
