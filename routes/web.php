@@ -28,7 +28,7 @@ Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists
 
 Route::post('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
 
-Route::post('/list/addWord', [AllListsController::class, 'addWord'])->name('lists.addWord');
+Route::get('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');
 
 Route::get('/register', function () {
     return view('auth.register');
@@ -46,5 +46,3 @@ Route::get('/home', function () {
 })->name('home');
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
-
-Route::post('/flip',[AllListsController::class,'flip'])->name('flip');

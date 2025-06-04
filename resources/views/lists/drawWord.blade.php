@@ -11,12 +11,14 @@ if(!isset($flip))
 @endphp
 
 @if (!$flip)
+    <h2>{{$listDetails['lang1']}}</h2>
     <h3>{{$word1}}</h3>
 @else
+    <h2>{{$listDetails['lang2']}}</h2>
     <h3>{{$word2}}</h3>
 @endif
 
-<form action='{{ route('flip') }}' method='POST'>
+<form action='{{ route('lists.listsOptions', ['action' => 'flip']) }}' method='POST'>
     @csrf
         <button title='Draw word' name='flip' value={{!$flip}}>
             Flip!

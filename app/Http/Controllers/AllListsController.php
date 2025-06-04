@@ -22,7 +22,16 @@ class AllListsController extends Controller
     // Zwraca widok 'wordLists' z tablicą wszytkich rekordów z tabeli '__lists'
     public function showLists()
     {
-        return view('lists.showLists', ['lists' => AllLists::all()]);
+        $lists = AllLists::all();
+        $dataToSend=[];
+        
+        foreach($lists as $list){
+            if(($list['user_id']==session('id'))||($list['private']==0))
+            {
+                array_push($dataToSend,$list);
+            }
+        }
+        return view('lists.showLists', ['lists' => $dataToSend]);
     }
 
     // Pobiera dane z formularza 'addList', waliduje, dodaje rekord do tabeli '__lists'
@@ -71,7 +80,7 @@ class AllListsController extends Controller
         switch ($action) {
             case 'draw-word':
                 $random=DB::table('list_'.$id)->inRandomOrder()->first();
-                return view('lists.drawWord', ['word1' => $random->lang1,'word2'=>$random->lang2,'id'=>$id,'lists'=>AllLists::all()]);
+                return view('lists.drawWord', ['word1' => $random->lang1,'word2'=>$random->lang2,'id'=>$id,'lists'=>AllLists::all(), 'listDetails'=>$listDetails]);
             case 'add-word':
                 return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails]);
             case 'edit-list':
@@ -81,15 +90,19 @@ class AllListsController extends Controller
                 $delete = DB::delete('delete from __lists where id = '.$id);
                 $drop = DB::statement('drop table list_'.$id);
                 return redirect()->route('lists.showLists');
+            case 'flip':
+                $id = $_POST['id'];
+                return view('lists.drawWord', ['word1' => $_POST['word1'],'word2'=>$_POST['word2'],'id'=>$id,'lists'=>AllLists::all(),'listDetails'=>$listDetails,'flip'=>$_POST['flip']]);
+
         }
     }
 
     public function addWord()
     {
-        $id = $_POST['id'];
+        $id = $_GET['id'];
         $listDetails = AllLists::find($id);
-        $lang1 = $_POST['lang1'];
-        $lang2 = $_POST['lang2'];
+        $lang1 = $_GET['lang1'];
+        $lang2 = $_GET['lang2'];
         $listContent = DB::table('list_' . $id)->where('lang1', $lang1)->orWhere('lang2', $lang2)->first();
         if (!$listContent) {
             $insert = DB::table('list_' . $id)->insert(['lang1' => $lang1, 'lang2' => $lang2]);
@@ -102,10 +115,5 @@ class AllListsController extends Controller
             $status = 'Word <b>' . $lang1 . '</b> is already on the list';
         }
         return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
-    }
-    public function flip()
-    {
-        $id = $_POST['id'];
-        return view('lists.drawWord', ['word1' => $_POST['word1'],'word2'=>$_POST['word2'],'id'=>$id,'lists'=>AllLists::all(),'flip'=>$_POST['flip']]);
     }
 }

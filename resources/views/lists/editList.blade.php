@@ -9,7 +9,8 @@
     <label>Yes<input type="radio" name="private" {{ ($listDetails['private'] == 1) ? 'checked' : '' }}></label>
     <label>No<input type="radio" name="private" {{ ($listDetails['private'] == 0) ? 'checked' : '' }}></label>
   </p>
-  <form action='{{ route('lists.listsOptions', ['action' => 'add-word']) }}' method='GET'>
+  <form action='{{ route('lists.listsOptions', ['action' => 'add-word']) }}' method='POST'>
+    @csrf
     <button name='id' value='{{$id}}'>Add word</button>
   </form>
 </section>

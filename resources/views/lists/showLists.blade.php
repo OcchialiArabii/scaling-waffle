@@ -37,7 +37,8 @@
           <img src='{{ asset('img/btn_modify.png') }}' alt="Edit">
         </button>
       </form>
-      <form action='{{ route('lists.listsOptions',['action'=> 'remove-list'])}}' method='GET'>
+      <form action='{{ route('lists.listsOptions',['action'=> 'remove-list'])}}' method='POST'>
+        @csrf
       <button class='optionBtn deleteBtn' title='Delete word list' name='id' value='{{$list['id']}}'>
         <img src='{{ asset('img/btn_delete.png') }}' alt="Delete">
       </button>
