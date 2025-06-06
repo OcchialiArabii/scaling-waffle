@@ -91,9 +91,10 @@ class AllListsController extends Controller
                 $drop = DB::statement('drop table list_'.$id);
                 return redirect()->route('lists.showLists');
             case 'flip':
-                $id = $_POST['id'];
                 return view('lists.drawWord', ['word1' => $_POST['word1'],'word2'=>$_POST['word2'],'id'=>$id,'lists'=>AllLists::all(),'listDetails'=>$listDetails,'flip'=>$_POST['flip']]);
-
+            case 'edit-word':
+                $row=$this->arrayChange(DB::table('list_'.$id)->where('id',$_POST['edit'])->get()->toArray());
+                return view('lists.editWord',['list'=>$listDetails,'row'=>$row[0],'id'=>$id]);
         }
     }
 
@@ -115,5 +116,21 @@ class AllListsController extends Controller
             $status = 'Word <b>' . $lang1 . '</b> is already on the list';
         }
         return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
+    }
+
+    public function editWord()
+    {
+        $id=$_POST['id'];
+        $listDetails = AllLists::find($id);
+        $wordN1 = $_POST['wordN1'];
+        $wordN2 = $_POST['wordN2'];
+        $edit=DB::table('list_'.$id)->where('id',$_POST['edit'])->update(['lang1'=>"$wordN1",'lang2'=>"$wordN2"]);
+        if ($edit) {
+            $status = 'Word has been updated correctly';
+        } else {
+            $status = 'Word updating error';
+        }
+        $row=$this->arrayChange(DB::table('list_'.$id)->where('id',$_POST['edit'])->get()->toArray());
+        return view('lists.editWord',['list'=>$listDetails,'id'=>$id,'row'=>$row[0],'status'=>$status]);   
     }
 }

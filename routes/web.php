@@ -26,9 +26,14 @@ Route::get('/add-list', function () {
 // -> przetwarza formularz, tworzy tabele i dodaje dane do tabeli '__lists' -> przekierowuje na widok wszystkich list
 Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists.createList');
 
+Route::post('/list/editWord', [AllListsController::class, 'editWord'])->name('lists.editWord');
+
 Route::post('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
 
 Route::get('/list/{action}', [AllListsController::class, 'addWord'])->name('lists.addWord');
+
+
+
 
 Route::get('/register', function () {
     return view('auth.register');
