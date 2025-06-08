@@ -14,6 +14,9 @@
     <th>Description</th>
     <th>Options</th>
   </tr>
+  @if(isset($message))
+    {{$message}}
+  @endif
   @foreach($lists as $list)
   <tr id="list_{{$list['id']}}">
     <td>{{$list['name']}}</td>

@@ -11,9 +11,13 @@
   </p>
   <form action='{{ route('lists.listsOptions', ['action' => 'add-word']) }}' method='POST'>
     @csrf
+    <input name=page value=1 hidden>
     <button name='id' value='{{$id}}'>Add word</button>
   </form>
 </section>
+@if(isset($message))
+      <h2>{{$message}}</h2>
+    @endif
 <main>
   @if (count($listContent) > 0)
   <span>Count: {{count($listContent)}} </span>
@@ -35,9 +39,13 @@
           <img src='{{ asset('img/btn_modify.png') }}' alt="Edit">
         </button>
         </form>
-        <button class='optionBtn' title='Delete word' name='deleteWord' value='{{ $row['id'] }}'>
+        <form action='{{route('lists.listsOptions',['action'=>'remove-word'])}}' method='POST'>
+          @csrf
+          <input name=id value={{$id}} hidden>
+          <button class='optionBtn' title='Delete word' name='row_id' value='{{ $row['id'] }}'>
           <img src='{{ asset('img/btn_delete.png') }}' alt="Delete">
-        </button>
+          </button>
+        </form>
     </td>
     </tr>
     @endforeach

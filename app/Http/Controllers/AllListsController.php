@@ -89,12 +89,27 @@ class AllListsController extends Controller
             case 'remove-list':
                 $delete = DB::delete('delete from __lists where id = '.$id);
                 $drop = DB::statement('drop table list_'.$id);
-                return redirect()->route('lists.showLists');
+                if($delete&&$drop)
+                {
+                    return redirect()->route('lists.showLists',['message'=>'List has been removed sucessfuly']);   
+                }
+                return redirect()->route('lists.showLists',['message'=>'List remove error']);     
             case 'flip':
                 return view('lists.drawWord', ['word1' => $_POST['word1'],'word2'=>$_POST['word2'],'id'=>$id,'lists'=>AllLists::all(),'listDetails'=>$listDetails,'flip'=>$_POST['flip']]);
             case 'edit-word':
                 $row=$this->arrayChange(DB::table('list_'.$id)->where('id',$_POST['edit'])->get()->toArray());
                 return view('lists.editWord',['list'=>$listDetails,'row'=>$row[0],'id'=>$id]);
+            case 'remove-word':
+                $delete = DB::delete('delete from list_'.$id.' where id = '.$_POST['row_id']);
+                if($delete)
+                {
+                    $message='Word has been removed sucessfuly';
+                }else{
+                    $message="Word removing error";
+                }
+                $listContent = $this->arrayChange(DB::table('list_' . $id)->orderBy('lang1')->get()->toArray());
+                return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContent, 'message'=>$message]);
+                
         }
     }
 
