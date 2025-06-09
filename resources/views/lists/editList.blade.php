@@ -3,12 +3,20 @@
 <p>EDIT LIST {{$id}}</p>
 <section>
   <h5>Modify list:</h5>
-  <p>Name: <span>{{ $listDetails['name'] }}</span></p>
-  <p>Description: <span>{{ $listDetails['description'] }}</span></p>
+
+  <form action={{route('lists.editList')}} method=POST>
+  @csrf
+  <label for=name >Name:<input value={{$listDetails['name']}} name=name></label>
+  <br>
+  <label for=Description >Description:<input value='{{$listDetails['description']}}' name=description></label>
   <p>Private: 
-    <label>Yes<input type="radio" name="private" {{ ($listDetails['private'] == 1) ? 'checked' : '' }}></label>
-    <label>No<input type="radio" name="private" {{ ($listDetails['private'] == 0) ? 'checked' : '' }}></label>
+    <label>Yes<input type="radio" name="private" value=1 {{ ($listDetails['private'] == 1) ? 'checked' : '' }}></label>
+    <label>No<input type="radio" name="private" value=0 {{ ($listDetails['private'] == 0) ? 'checked' : '' }}></label>
   </p>
+  <button type=submit value={{$id}} name=id>Edit List!</button>
+
+  </form>
+
   <form action='{{ route('lists.listsOptions', ['action' => 'add-word']) }}' method='POST'>
     @csrf
     <input name=page value=1 hidden>

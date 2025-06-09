@@ -133,6 +133,24 @@ class AllListsController extends Controller
         return view('lists.addWord', ['id' => $id, 'listDetails' => $listDetails, 'status' => $status]);
     }
 
+    public function editList()
+    {
+        $id=$_POST['id'];
+        $listDetails = AllLists::find($id);
+        $update = $listDetails->update(['name'=>"{$_POST['name']}",'description'=>"{$_POST['description']}",'private'=>"{$_POST['private']}"]);
+        if($update)
+        {
+            $message="The List has been updated successfully";
+        }
+        else
+        {
+            $message="List updating error";
+        }
+        $listContent = $this->arrayChange(DB::table('list_' . $id)->orderBy('lang1')->get()->toArray());
+        return view('lists.editList', ['id' => $id, 'listDetails' => $listDetails, 'listContent' => $listContent, 'message'=>$message]);
+
+    }
+
     public function editWord()
     {
         $id=$_POST['id'];

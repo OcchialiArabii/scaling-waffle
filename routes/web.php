@@ -26,6 +26,8 @@ Route::get('/add-list', function () {
 // -> przetwarza formularz, tworzy tabele i dodaje dane do tabeli '__lists' -> przekierowuje na widok wszystkich list
 Route::post('/add-list', [AllListsController::class, 'createList'])->name('lists.createList');
 
+Route::post('/list/editList',[AllListsController::class, 'editList'])->name('lists.editList');
+
 Route::post('/list/editWord', [AllListsController::class, 'editWord'])->name('lists.editWord');
 
 Route::post('/list/{action}', [AllListsController::class, 'listsOptions'])->name('lists.listsOptions');
